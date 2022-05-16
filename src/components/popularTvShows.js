@@ -7,7 +7,7 @@ export default function PopularTvShows() {
   var counter = 0;
   const getMovieRequest = async () => {
 
-    const url = `    https://api.themoviedb.org/3/tv/popular?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US&page=1`;
+    const url = `https://api.themoviedb.org/3/tv/popular?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US&page=1`;
 
     const response = await fetch(url);
     const responseJson = await response.json();
