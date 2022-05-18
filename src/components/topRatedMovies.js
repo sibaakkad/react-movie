@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, Row, Col, Button, Carousel,Badge } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
-import CardInfo from './cardInfo';
+import MoviesCardInfo from './moviesCardInfo';
 export default function TopRatedMovies () {
 
   const [movies, setMovies] = useState([]);
@@ -57,7 +57,7 @@ export default function TopRatedMovies () {
                         <p><span>Release Date:</span> {movies[counter].release_date}</p>
                         <p><span >Rating:</span> {movies[counter].vote_average} </p>
                       </Card.Text>
-                      <CardInfo MovieId ={movies[counter].id}/>
+                      <MoviesCardInfo MovieId ={movies[counter].id}/>
                     </Card.Body>
                   </Card>
                   <div style={{ display: 'none' }}>{counter++}</div>

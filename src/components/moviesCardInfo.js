@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { Button, Modal, Row, Col, Badge } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 
-function CardInfo(props) {
+function MoviesCardInfo(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -29,14 +29,10 @@ function CardInfo(props) {
     const responseJson = await response.json();
     const trailerList = responseJson.results.filter((item) => item.type == "Trailer");
     setTrailer(trailerList)
-    console.log(trailerList[0].key)
-
   };
   const getMovieData = () => {
     getTrailer(props);
     getMovieDetailes(props);
-    console.log(props)
-
   }
   return (
     <div>
@@ -91,4 +87,4 @@ function CardInfo(props) {
       </>
     </div>
   )
-} export default CardInfo;
+} export default MoviesCardInfo;

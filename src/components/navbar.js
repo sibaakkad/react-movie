@@ -2,6 +2,7 @@ import React from 'react'
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
 
 export default function MovieNavbar() {
+
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -14,10 +15,20 @@ export default function MovieNavbar() {
               style={{ maxHeight: '100px' }}
               navbarScroll
             >
-              <Nav.Link href="#action1">Home</Nav.Link>
-              <Nav.Link href="#action2">Movies</Nav.Link>
-              <Nav.Link href="#action2"> TV Shows</Nav.Link>
+              <Nav.Link href="/">Home</Nav.Link>
+              <NavDropdown title="Movies" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/movies/popular" >Popular </NavDropdown.Item>
+                <NavDropdown.Item href="/movies/nowPlaying">Now Playing</NavDropdown.Item>
+                <NavDropdown.Item href="/movies/upcoming">Upcoming</NavDropdown.Item>
+                <NavDropdown.Item href="/movies/topRated">Top Rated</NavDropdown.Item>
 
+              </NavDropdown>
+              <NavDropdown title="TV Shows" id="basic-nav-dropdown">
+                <NavDropdown.Item href="/tvShows/popular">Popular</NavDropdown.Item>
+                <NavDropdown.Item href="/tvShows/airingToday">Airing Today</NavDropdown.Item>
+                <NavDropdown.Item href="/tvShows/onTV">On TV</NavDropdown.Item>
+                <NavDropdown.Item href="/tvShows/topRated">Top Rated</NavDropdown.Item>
+              </NavDropdown>
             </Nav>
             <Form className="d-flex">
               <FormControl

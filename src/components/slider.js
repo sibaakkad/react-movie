@@ -12,7 +12,7 @@ export default function Slider() {
     const response = await fetch(url);
     const responseJson = await response.json();
     setMovies(responseJson.results)
-    console.log(responseJson.results)
+    // console.log(responseJson.results)
 
   };
 
