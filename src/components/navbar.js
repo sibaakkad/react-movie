@@ -1,9 +1,34 @@
 import React from 'react'
 import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
+import { useState,useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 
-export default function MovieNavbar() {
+export default function MovieNavbar(props) {
+  const [searchValue, setSearchValue] = useState("");
+  let navigate = useNavigate(); 
+  const routeChange = () =>{ 
+  
+    if (searchValue == "") {
+      let path = `/`; 
+      navigate(path);
+    } else {
+      let path = `/search`; 
+      navigate(path);
+    }
 
+  }
+  useEffect(() => {
+    search();
+  });
+  const search = function () {
+    if (searchValue == "") {
+   
+    } else {
+     
+    }
+  };
   return (
+ 
     <div>
       <Navbar bg="light" expand="lg">
         <Container fluid>
@@ -36,8 +61,10 @@ export default function MovieNavbar() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                value={searchValue}
+                onChange={(e) => setSearchValue(e.target.value)}
               />
-              <Button variant="outline-success">Search</Button>
+              <Button variant="outline-success" onClick={() => {routeChange(); props.Changedata(searchValue)}}>Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
