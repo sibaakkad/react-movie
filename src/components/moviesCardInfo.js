@@ -1,14 +1,18 @@
 import React from 'react'
-
-import { Button, Modal, Row, Col, Badge } from 'react-bootstrap';
+import { Modal, Button, Text, Row, Col } from "@nextui-org/react";
 import { useState } from 'react';
-
+import Moment from 'react-moment';
+import PlayVedio from './playVedio';
 
 function MoviesCardInfo(props) {
-  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
+
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
   const [trailer, setTrailer] = useState([]);
   const [moviesDetailes, setMoviesDetailes] = useState([]);
 
@@ -18,7 +22,6 @@ function MoviesCardInfo(props) {
     const response = await fetch(url);
     const responseJson = await response.json();
     setMoviesDetailes(responseJson);
-    // console.log(responseJson)
   };
 
   const getTrailer = async (props) => {
@@ -34,52 +37,59 @@ function MoviesCardInfo(props) {
     getTrailer(props);
     getMovieDetailes(props);
   }
+  const openTrailer =()=>{
+   <PlayVedio key={trailer[0]?.key}/>
+  }
   return (
     <div>
       <>
-        <Button variant="primary" onClick={() => { handleShow(); getMovieData() }}>
+        <Button shadow color="gradient" onClick={() => { handler(); getMovieData() }}>
           Show More
         </Button>
-
-        <Modal show={show} onHide={handleClose}
-          size="lg"
-          centered>
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">{moviesDetailes.original_title}</Modal.Title>
+        <Modal
+          closeButton
+          aria-labelledby="modal-title"
+          open={visible}
+          onClose={closeHandler}
+          width="50%"
+        >
+          <Modal.Header>
+              <Text b size={25}>
+              {moviesDetailes.original_title}
+            </Text>
           </Modal.Header>
           <Modal.Body>
-
             <Row>
               <Col >
-                <div>
-                  {/* <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${moviesDetailes.poster_path}`} /> */}
-                  <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
-                  </iframe>
+                <div >
+                  <img className='card-info-img' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${moviesDetailes.poster_path}`} />
+                  {/* <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
+                  </iframe> */}
                 </div>
+            
               </Col>
-              <Col>
-                <div>
-                  <p> {moviesDetailes.tagline}</p>
-                  <p> <Badge pill bg="secondary">Status </Badge>  : {moviesDetailes.status}    {"       "}
-                    <Badge pill bg="secondary">  Release date </Badge>  : {moviesDetailes.release_date}
-                  </p>
+              <Col>                     
+                 <p>
+                 <Moment format="DD/MM/YYYY" className='date'>{moviesDetailes.release_date}</Moment>
+            
                   {
                     moviesDetailes.genres?.map((item, idx) => (
-                      <Badge pill bg="secondary">{item.name}</Badge>
+                      
+                   <span className='card-info-span'>• {item.name}</span>
                     ))
                   }
-                  <h3>
-                    <Badge pill bg="dark">Overview</Badge>
-                  </h3>
+                    </p>
+                    <p className='tagline'> {moviesDetailes.tagline}</p>
+                  <h2>
+                    Overview
+                  </h2>
                   <p>{moviesDetailes.overview}</p>
-                </div>
               </Col>
             </Row>
-            <Row>
-            </Row>
+            <Button color="gradient" onClick={openTrailer} className='player-button'><i class="fa fa-play-circle"style={{fontSize: "30px"}}></i> Play Trailer</Button>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button auto flat color="error" onClick={closeHandler}>
               Close
             </Button>
           </Modal.Footer>
@@ -88,3 +98,9 @@ function MoviesCardInfo(props) {
     </div>
   )
 } export default MoviesCardInfo;
+
+
+
+
+
+

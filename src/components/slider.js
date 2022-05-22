@@ -12,7 +12,6 @@ export default function Slider() {
     const response = await fetch(url);
     const responseJson = await response.json();
     setMovies(responseJson.results)
-    // console.log(responseJson.results)
 
   };
 
@@ -25,14 +24,9 @@ export default function Slider() {
       <Carousel variant="dark">
         {Array.from({ length: 4 }).map((_, idx) => (
           <Carousel.Item>
-            <div >
-              {/* <img src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/8tc8eMFAX2SDC1TRu987qFQy8Cl.jpg`} />  */}
               <img style={{ height: "100vh", width: "100%" ,objectFit:"fill"}}
                 className="d-block "
                 src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movies[idx]?.poster_path}`} alt='poster'/> 
-            </div>
-            <Carousel.Caption>
-            </Carousel.Caption>
             <div style={{ display: 'none' }}>{counter++}</div>
           </Carousel.Item>
 

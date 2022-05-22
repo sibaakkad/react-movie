@@ -50,7 +50,7 @@ export default function TopRatedMovies () {
               {Array.from({ length: 5 }).map((_, idx) => (
                 <Col>
                   <Card>
-                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${movies[counter].poster_path}`} alt='movie' />
+                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movies[counter].poster_path}`} alt='movie' />
                     <Card.Body>
                       <Card.Title>{movies[counter].title}</Card.Title>
                       <Card.Text>

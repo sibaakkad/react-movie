@@ -1,4 +1,5 @@
 import './App.css';
+import './css/style.css'
 import MovieNavbar from './components/navbar';
 import TopRatedMovies from './components/topRatedMovies';
 import Slider from './components/slider';
@@ -9,12 +10,15 @@ import { Routes, Route } from "react-router-dom";
 import MoviesList from './components/moviesList';
 import TVShowsList from './components/tvShowsList';
 import { useState ,useEffect} from 'react';
+import { NextUIProvider } from '@nextui-org/react';
+
 
 function App() {
   const [searchValue, setSearchValue] = useState("");
   useEffect(() => {
   });
   return (
+    <NextUIProvider>
     <div className="App">
       <MovieNavbar Changedata={(searchValue) => setSearchValue(searchValue)} />
       <Routes>
@@ -37,6 +41,7 @@ function App() {
         <Route path="search" element={<MoviesList url={`https://api.themoviedb.org/3/search/multi?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US&query=${searchValue}&page=1&include_adult=false`}  />} />
       </Routes>
     </div>
+    </NextUIProvider>
   );
 }
 

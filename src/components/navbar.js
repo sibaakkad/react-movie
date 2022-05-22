@@ -1,18 +1,19 @@
 import React from 'react'
-import { Navbar, Nav, Container, NavDropdown, Form, FormControl, Button } from 'react-bootstrap'
-import { useState,useEffect } from 'react';
+import { Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap'
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Button } from "@nextui-org/react";
 
 export default function MovieNavbar(props) {
   const [searchValue, setSearchValue] = useState("");
-  let navigate = useNavigate(); 
-  const routeChange = () =>{ 
-  
+  let navigate = useNavigate();
+  const routeChange = () => {
+
     if (searchValue == "") {
-      let path = `/`; 
+      let path = `/`;
       navigate(path);
     } else {
-      let path = `/search`; 
+      let path = `/search`;
       navigate(path);
     }
 
@@ -22,15 +23,15 @@ export default function MovieNavbar(props) {
   });
   const search = function () {
     if (searchValue == "") {
-   
+
     } else {
-     
+
     }
   };
   return (
- 
-    <div>
-      <Navbar bg="light" expand="lg">
+
+    <div className='navbar-container'>
+      <Navbar bg="light" expand="lg" fixed="top" >
         <Container fluid>
           <Navbar.Brand href="#">Siba Movies</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
@@ -64,7 +65,7 @@ export default function MovieNavbar(props) {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
               />
-              <Button variant="outline-success" onClick={() => {routeChange(); props.Changedata(searchValue)}}>Search</Button>
+              <Button shadow auto color="gradient" onClick={() => { routeChange(); props.Changedata(searchValue) }}>Search</Button>
             </Form>
           </Navbar.Collapse>
         </Container>
