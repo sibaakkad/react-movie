@@ -1,68 +1,80 @@
-*{
+* {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 20px;
 }
 
-h1{
+h1 {
   text-align: left;
 }
-.movies-container{
-  margin :20px;
+
+.movies-container {
+  margin: 20px;
 
 }
 
-div.card{
+div.card {
   border-radius: 20px;
- margin-top: 20%;
+  margin-top: 20%;
 }
+
 .card:hover {
   transform: scale(1.1);
   box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
   z-index: 3;
   border-color: #b700ff !important;
 }
-.header{
+
+.header {
   margin: 20px;
 }
-.card-img-top{
+
+.card-img-top {
   border-radius: 20px;
 }
 
-div.g-4{
+div.g-4 {
   height: 110vh;
-  
+
 }
+
 .card-title {
   font-weight: 700
 }
-span.card-info-span{
-font-size: 18px;
-font-weight: 800;
-margin: 5px;
+
+span.card-info-span {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 5px;
 }
-.date{
+
+.date {
   margin-right: 10px;
 }
-.tagline{
+
+.tagline {
   font-style: italic;
   font-weight: 400;
   color: gray;
 }
-.fa-play-circle{
+
+.fa-play-circle {
   margin: 10px;
 }
-.player-button{
-font-weight: 800;
-font-size: 40px;
-}
-.card-info-img{
 
-  padding:10px 5px;
+.player-button {
+  font-weight: 800;
+  font-size: 40px;
+}
+
+.card-info-img {
+
+  padding: 10px 5px;
   height: auto;
   width: 100%;
 
   border-radius: 40px;
 }
-.nextui-c-cMTZRp{
+
+.nextui-c-cMTZRp {
   margin-right: 20px;
 }

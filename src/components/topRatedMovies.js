@@ -1,29 +1,13 @@
 import React from 'react'
-import { Card, Row, Col, Button, Carousel,Badge } from 'react-bootstrap'
+import { Card, Row, Col, Carousel } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import MoviesCardInfo from './moviesCardInfo';
-export default function TopRatedMovies () {
+import Moment from 'react-moment';
+
+export default function TopRatedMovies() {
 
   const [movies, setMovies] = useState([]);
   var counter = 0;
-
-  // const rowsLength = () => {
-  //   var x = [];
-  //   var count = Math.floor(movies.length / 6);
-  //   if (movies.length % 6 == 0) {
-  //     for (let i = 0; i > count; i++) {
-  //       x.push(count)
-  //     }
-  //   }
-  //   else {
-  //     for (let i = 0; i > count; i++) {
-  //       x.push(count)
-  //     } 
-  //     x.push(movies.length % 6)
-  //   }
-  //   return x;
-  // }
-
 
   const getMovieRequest = async () => {
     const url = `https://api.themoviedb.org/3/movie/top_rated?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US&page=1`;
@@ -39,10 +23,10 @@ export default function TopRatedMovies () {
 
   return (
     <div>
-       <h1>
-      <Badge bg="secondary"> Top Rated Movies</Badge>
-      </h1>
-      
+      <div className='header' >
+        <h1> Top Rated Movies </h1>
+      </div>
+
       <Carousel variant="dark">
         {Array.from({ length: Math.ceil(movies.length / 6) }).map((_, idx) => (
           <Carousel.Item>
@@ -54,10 +38,10 @@ export default function TopRatedMovies () {
                     <Card.Body>
                       <Card.Title>{movies[counter].title}</Card.Title>
                       <Card.Text>
-                        <p><span>Release Date:</span> {movies[counter].release_date}</p>
+                        <p><span>Release Date:</span> <Moment format="MMMM D, YYYY">{movies[counter].release_date}</Moment></p>
                         <p><span >Rating:</span> {movies[counter].vote_average} </p>
                       </Card.Text>
-                      <MoviesCardInfo MovieId ={movies[counter].id}/>
+                      <MoviesCardInfo MovieId={movies[counter].id} />
                     </Card.Body>
                   </Card>
                   <div style={{ display: 'none' }}>{counter++}</div>

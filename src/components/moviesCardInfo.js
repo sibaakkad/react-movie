@@ -37,8 +37,8 @@ function MoviesCardInfo(props) {
     getTrailer(props);
     getMovieDetailes(props);
   }
-  const openTrailer =()=>{
-   <PlayVedio key={trailer[0]?.key}/>
+  const openTrailer = () => {
+    <PlayVedio key={trailer[0]?.key} />
   }
   return (
     <div>
@@ -54,7 +54,7 @@ function MoviesCardInfo(props) {
           width="50%"
         >
           <Modal.Header>
-              <Text b size={25}>
+            <Text b size={25}>
               {moviesDetailes.original_title}
             </Text>
           </Modal.Header>
@@ -66,27 +66,26 @@ function MoviesCardInfo(props) {
                   {/* <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
                   </iframe> */}
                 </div>
-            
               </Col>
-              <Col>                     
-                 <p>
-                 <Moment format="DD/MM/YYYY" className='date'>{moviesDetailes.release_date}</Moment>
-            
+              <Col>
+                <p>
+                  <Moment format="DD/MM/YYYY" className='date'>{moviesDetailes.release_date}</Moment>
+
                   {
                     moviesDetailes.genres?.map((item, idx) => (
-                      
-                   <span className='card-info-span'>• {item.name}</span>
+
+                      <span className='card-info-span'>• {item.name}</span>
                     ))
                   }
-                    </p>
-                    <p className='tagline'> {moviesDetailes.tagline}</p>
-                  <h2>
-                    Overview
-                  </h2>
-                  <p>{moviesDetailes.overview}</p>
+                </p>
+                <p className='tagline'> {moviesDetailes.tagline}</p>
+                <h2>
+                  Overview
+                </h2>
+                <p>{moviesDetailes.overview}</p>
               </Col>
             </Row>
-            <Button color="gradient" onClick={openTrailer} className='player-button'><i class="fa fa-play-circle"style={{fontSize: "30px"}}></i> Play Trailer</Button>
+            <Button color="gradient" onClick={openTrailer} className='player-button'><i class="fa fa-play-circle" style={{ fontSize: "30px" }}></i> Play Trailer</Button>
           </Modal.Body>
           <Modal.Footer>
             <Button auto flat color="error" onClick={closeHandler}>

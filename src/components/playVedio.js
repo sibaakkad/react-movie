@@ -5,11 +5,11 @@ export default function PlayVedio(props) {
   const [isOpen, setOpen] = useState(false)
   return (
     <div>
-  <React.Fragment>
-      <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="L61p2uyiMSo" onClose={() => setOpen(false)} />
+      <React.Fragment>
+        <ModalVideo channel='youtube' autoplay isOpen={isOpen} videoId="L61p2uyiMSo" onClose={() => setOpen(false)} />
 
-      <button className="btn-primary" onClick={()=> setOpen(true)}>VIEW DEMO</button>
-    </React.Fragment>
+        <button className="btn-primary" onClick={() => setOpen(true)}>VIEW DEMO</button>
+      </React.Fragment>
     </div>
   )
 }

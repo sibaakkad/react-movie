@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Row, Col, Carousel, Badge } from 'react-bootstrap'
+import { Card, Row, Col, Carousel } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import MoviesCardInfo from './moviesCardInfo';
 import Moment from 'react-moment';
@@ -21,9 +21,9 @@ export default function PopularMovies() {
   return (
     <div className='movies-container'>
       <div className='header' >
-      <h1>
-      Popular Movies
-      </h1>
+        <h1>
+          Popular Movies
+        </h1>
       </div>
       <Carousel variant="dark">
         {Array.from({ length: Math.ceil(movies.length / 6) }).map((_, idx) => (

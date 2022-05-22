@@ -1,12 +1,15 @@
 import React from 'react'
-import { Button, Modal, Row, Col, Badge } from 'react-bootstrap';
 import { useState } from 'react';
+import { Modal, Button, Text, Row, Col } from "@nextui-org/react";
+import Moment from 'react-moment';
 
 export default function TvShowsCardInfo(props) {
-  const [show, setShow] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const closeHandler = () => {
+    setVisible(false);
+  };
   const [trailer, setTrailer] = useState([]);
   const [tvShowsDetailes, setTvShowsDetailes] = useState([]);
 
@@ -21,7 +24,7 @@ export default function TvShowsCardInfo(props) {
   };
 
   const getTrailer = async (props) => {
-    
+
     const url = `https://api.themoviedb.org/3/tv/${props.TVId}/videos?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US`;
 
     const response = await fetch(url);
@@ -40,49 +43,53 @@ export default function TvShowsCardInfo(props) {
   return (
     <div>
       <>
-        <Button variant="primary" onClick={() => { handleShow(); getTvShowsData() }}>
+        <Button shadow color="gradient" onClick={() => { handler(); getTvShowsData() }}>
           Show More
         </Button>
-
-        <Modal show={show} onHide={handleClose}
-          size="lg"
-          centered>
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">{tvShowsDetailes.original_name}</Modal.Title>
+        <Modal
+          closeButton
+          aria-labelledby="modal-title"
+          open={visible}
+          onClose={closeHandler}
+          width="50%"
+        >
+          <Modal.Header>
+            <Text b size={25}>
+              {tvShowsDetailes.name}
+            </Text>
           </Modal.Header>
           <Modal.Body>
-
             <Row>
               <Col >
-                <div>
-                  {/* <img src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${moviesDetailes.poster_path}`} /> */}
-                  <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
-                  </iframe>
+                <div >
+                  <img className='card-info-img' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShowsDetailes.poster_path}`} />
+                  {/* <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
+                  </iframe> */}
                 </div>
+
               </Col>
               <Col>
-                <div>
-                  <p> {tvShowsDetailes.tagline}</p>
-                  <p> <Badge pill bg="secondary">Status </Badge>  : {tvShowsDetailes.status}    {"       "}
-                    <Badge pill bg="secondary"> First air date  </Badge>  : {tvShowsDetailes.first_air_date}
-                  </p>
+                <p>
+                  <Moment format="DD/MM/YYYY" className='date'>{tvShowsDetailes.release_date}</Moment>
+
                   {
                     tvShowsDetailes.genres?.map((item, idx) => (
-                      <Badge pill bg="secondary">{item.name}</Badge>
+
+                      <span className='card-info-span'>• {item.name}</span>
                     ))
                   }
-                  <h3>
-                    <Badge pill bg="dark">Overview</Badge>
-                  </h3>
-                  <p>{tvShowsDetailes.overview}</p>
-                </div>
+                </p>
+                <p className='tagline'> {tvShowsDetailes.tagline}</p>
+                <h2>
+                  Overview
+                </h2>
+                <p>{tvShowsDetailes.overview}</p>
               </Col>
             </Row>
-            <Row>
-            </Row>
+            <Button color="gradient" className='player-button'><i class="fa fa-play-circle" style={{ fontSize: "30px" }}></i> Play Trailer</Button>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button auto flat color="error" onClick={closeHandler}>
               Close
             </Button>
           </Modal.Footer>

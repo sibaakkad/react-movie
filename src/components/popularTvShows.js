@@ -1,7 +1,8 @@
 import React from 'react'
-import { Card, Row, Col, Button, Carousel,Badge } from 'react-bootstrap'
+import { Card, Row, Col, Carousel } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import TvShowsCardInfo from './tvShowsCardInfo';
+import Moment from 'react-moment';
 
 export default function PopularTvShows() {
   const [tvShows, setTvShows] = useState([]);
@@ -19,33 +20,33 @@ export default function PopularTvShows() {
     getTvShowsRequest();
   }, []);
   return (
-    <div>  <h1>
-    <Badge bg="secondary"> Popular Tv Shows</Badge>
-    </h1>
-    
-    <Carousel variant="dark">
-      {Array.from({ length: Math.ceil(tvShows.length / 6) }).map((_, idx) => (
-        <Carousel.Item>
-          <Row xs={1} md={5} className="g-4">
-            {Array.from({ length: 5 }).map((_, idx) => (
-              <Col>
-                <Card>
-                  <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${tvShows[counter].poster_path}`} alt='movie' />
-                  <Card.Body>
-                    <Card.Title>{tvShows[counter].title}</Card.Title>
-                    <Card.Text>
-                      <p><span>Release Date:</span> {tvShows[counter].release_date}</p>
-                      <p><span >Rating:</span> {tvShows[counter].vote_average} </p>
-                    </Card.Text>
-                    <TvShowsCardInfo TVId ={tvShows[counter].id}/>
-                  </Card.Body>
-                </Card>
-                <div style={{ display: 'none' }}>{counter++}</div>
-              </Col>
-            ))}
-          </Row>
-        </Carousel.Item>
-      ))}
-    </Carousel></div>
+    <div>
+      <div className='header' >
+        <h1>Popular Tv Shows</h1>
+      </div>
+      <Carousel variant="dark">
+        {Array.from({ length: Math.ceil(tvShows.length / 6) }).map((_, idx) => (
+          <Carousel.Item>
+            <Row xs={1} md={5} className="g-4">
+              {Array.from({ length: 5 }).map((_, idx) => (
+                <Col>
+                  <Card>
+                    <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShows[counter].poster_path}`} alt='movie' />
+                    <Card.Body>
+                      <Card.Title>{tvShows[counter].name}</Card.Title>
+                      <Card.Text>
+                        <p><span>First Air Date:</span>  <Moment format="MMMM D, YYYY">{tvShows[counter].first_air_date}</Moment></p>
+                        <p><span >Rating:</span> {tvShows[counter].vote_average} </p>
+                      </Card.Text>
+                      <TvShowsCardInfo TVId={tvShows[counter].id} />
+                    </Card.Body>
+                  </Card>
+                  <div style={{ display: 'none' }}>{counter++}</div>
+                </Col>
+              ))}
+            </Row>
+          </Carousel.Item>
+        ))}
+      </Carousel></div>
   )
 }

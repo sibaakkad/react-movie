@@ -24,9 +24,9 @@ export default function Slider() {
       <Carousel variant="dark">
         {Array.from({ length: 4 }).map((_, idx) => (
           <Carousel.Item>
-              <img style={{ height: "100vh", width: "100%" ,objectFit:"fill"}}
-                className="d-block "
-                src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movies[idx]?.poster_path}`} alt='poster'/> 
+            <img style={{ height: "100vh", width: "100%", objectFit: "fill" }}
+              className="d-block "
+              src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movies[idx]?.poster_path}`} alt='poster' />
             <div style={{ display: 'none' }}>{counter++}</div>
           </Carousel.Item>
 

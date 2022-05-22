@@ -33,7 +33,7 @@ export default function MovieNavbar(props) {
     <div className='navbar-container'>
       <Navbar bg="light" expand="lg" fixed="top" >
         <Container fluid>
-          <Navbar.Brand href="#">Siba Movies</Navbar.Brand>
+          <Navbar.Brand href="#">Movies & TV Shows</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <Nav

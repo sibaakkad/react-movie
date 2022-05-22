@@ -18,22 +18,22 @@ export default function TVShowsList(props) {
   }, []);
   return (
     <div> <Row xs={1} md={5} className="g-4">
-            {Array.from({ length: 20 }).map((_, idx) => (
-              <Col>
-                <Card>
-                  <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w185_and_h278_bestv2/${tvShows[counter]?.poster_path}`} alt='movie' />
-                  <Card.Body>
-                    <Card.Title>{tvShows[counter]?.title}</Card.Title>
-                    <Card.Text>
-                      <p><span>Release Date:</span> {tvShows[counter]?.release_date}</p>
-                      <p><span >Rating:</span> {tvShows[counter]?.vote_average} </p>
-                    </Card.Text>
-                    <TvShowsCardInfo TVId ={tvShows[counter]?.id}/>
-                  </Card.Body>
-                </Card>
-                <div style={{ display: 'none' }}>{counter++}</div>
-              </Col>
-            ))}
-       </Row></div>
+      {Array.from({ length: 20 }).map((_, idx) => (
+        <Col>
+          <Card>
+            <Card.Img variant="top" src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShows[counter]?.poster_path}`} alt='movie' />
+            <Card.Body>
+              <Card.Title>{tvShows[counter]?.name}</Card.Title>
+              <Card.Text>
+                <p><span>Release Date:</span> {tvShows[counter]?.release_date}</p>
+                <p><span >Rating:</span> {tvShows[counter]?.vote_average} </p>
+              </Card.Text>
+              <TvShowsCardInfo TVId={tvShows[counter]?.id} />
+            </Card.Body>
+          </Card>
+          <div style={{ display: 'none' }}>{counter++}</div>
+        </Col>
+      ))}
+    </Row></div>
   )
 }
