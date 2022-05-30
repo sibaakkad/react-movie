@@ -78,3 +78,12 @@ span.card-info-span {
 .nextui-c-cMTZRp {
   margin-right: 20px;
 }
+.flex-container{
+  display: flex;
+ 
+}
+
+.nextui-button:first-child{
+  margin-right: 5px;
+  
+}

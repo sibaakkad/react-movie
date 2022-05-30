@@ -3,7 +3,7 @@ import { Card, Row, Col, Carousel } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import MoviesCardInfo from './moviesCardInfo';
 import Moment from 'react-moment';
-
+import PlayVedio from './playVedio';
 export default function TopRatedMovies() {
 
   const [movies, setMovies] = useState([]);
@@ -41,7 +41,10 @@ export default function TopRatedMovies() {
                         <p><span>Release Date:</span> <Moment format="MMMM D, YYYY">{movies[counter].release_date}</Moment></p>
                         <p><span >Rating:</span> {movies[counter].vote_average} </p>
                       </Card.Text>
+                      <div className="flex-container">
                       <MoviesCardInfo MovieId={movies[counter].id} />
+                      <PlayVedio MovieId={movies[counter].id } type="movie"/>
+                      </div>
                     </Card.Body>
                   </Card>
                   <div style={{ display: 'none' }}>{counter++}</div>

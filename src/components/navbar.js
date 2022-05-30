@@ -31,7 +31,7 @@ export default function MovieNavbar(props) {
   return (
 
     <div className='navbar-container'>
-      <Navbar bg="light" expand="lg" fixed="top" >
+      <Navbar bg="light" expand="lg" >
         <Container fluid>
           <Navbar.Brand href="#">Movies & TV Shows</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />

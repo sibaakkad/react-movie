@@ -10,7 +10,7 @@ export default function TvShowsCardInfo(props) {
   const closeHandler = () => {
     setVisible(false);
   };
-  const [trailer, setTrailer] = useState([]);
+  
   const [tvShowsDetailes, setTvShowsDetailes] = useState([]);
 
   const getTvShowsDetailes = async (props) => {
@@ -20,22 +20,9 @@ export default function TvShowsCardInfo(props) {
     const response = await fetch(url);
     const responseJson = await response.json();
     setTvShowsDetailes(responseJson);
-    //  console.log(responseJson)
   };
 
-  const getTrailer = async (props) => {
-
-    const url = `https://api.themoviedb.org/3/tv/${props.TVId}/videos?api_key=7917b1f1a6ceb6e64d447919f0a82eef&language=en-US`;
-
-    const response = await fetch(url);
-    const responseJson = await response.json();
-    const trailerList = responseJson.results.filter((item) => item.type == "Trailer");
-    setTrailer(trailerList)
-    console.log(trailerList)
-
-  };
   const getTvShowsData = () => {
-    getTrailer(props);
     getTvShowsDetailes(props);
     console.log(props)
 
@@ -43,8 +30,8 @@ export default function TvShowsCardInfo(props) {
   return (
     <div>
       <>
-        <Button shadow color="gradient" onClick={() => { handler(); getTvShowsData() }}>
-          Show More
+        <Button shadow color="gradient" auto onClick={() => { handler(); getTvShowsData() }}>
+        <i style={{ fontSize: "24px" }} class="fa">&#xf05a;</i>
         </Button>
         <Modal
           closeButton
@@ -63,8 +50,6 @@ export default function TvShowsCardInfo(props) {
               <Col >
                 <div >
                   <img className='card-info-img' src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${tvShowsDetailes.poster_path}`} />
-                  {/* <iframe width="100%" height="500px" src={`https://www.youtube.com/embed/${trailer[0]?.key}`} >
-                  </iframe> */}
                 </div>
 
               </Col>
@@ -86,7 +71,6 @@ export default function TvShowsCardInfo(props) {
                 <p>{tvShowsDetailes.overview}</p>
               </Col>
             </Row>
-            <Button color="gradient" className='player-button'><i class="fa fa-play-circle" style={{ fontSize: "30px" }}></i> Play Trailer</Button>
           </Modal.Body>
           <Modal.Footer>
             <Button auto flat color="error" onClick={closeHandler}>

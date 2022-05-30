@@ -3,6 +3,7 @@ import { Card, Row, Col, Carousel } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import MoviesCardInfo from './moviesCardInfo';
 import Moment from 'react-moment';
+import PlayVedio from './playVedio';
 
 export default function PopularMovies() {
   const [movies, setMovies] = useState([]);
@@ -39,7 +40,10 @@ export default function PopularMovies() {
                         <p><span>Release Date:</span> <Moment format="MMMM D, YYYY">{movies[counter].release_date}</Moment></p>
                         <p><span >Rating:</span> {movies[counter].vote_average} </p>
                       </Card.Text>
+                      <div className="flex-container">
                       <MoviesCardInfo MovieId={movies[counter].id} />
+                      <PlayVedio MovieId={movies[counter].id } type="movie"/>
+                      </div>
                     </Card.Body>
                   </Card>
                   <div style={{ display: 'none' }}>{counter++}</div>
@@ -53,33 +57,3 @@ export default function PopularMovies() {
   )
 }
 
-{/* <Card cover css={{ w: "100%" }}>
-                    <Card.Header css={{ position: "absolute", zIndex: 1, top: 5 }}>
-                    </Card.Header>
-                    <Card.Body>
-                      <Card.Image
-                        src={`https://image.tmdb.org/t/p/w600_and_h900_bestv2/${movies[counter].poster_path}`}
-                        height={400}
-                        width="100%"
-                        alt="Card example background"
-                      />
-                    </Card.Body>
-                    <Card.Footer
-                      blur
-                      css={{
-                        position: "absolute",
-                        bgBlur: "#ffffff",
-                        borderTop: "$borderWeights$light solid rgba(255, 255, 255, 0.2)",
-                        bottom: 0,
-                        zIndex: 1,
-                      }}
-                    >
-                      <Row>
-                        <Col>
-                          <Row justify="flex-end">
-                            <MoviesCardInfo MovieId={movies[counter].id} />
-                          </Row>
-                        </Col>
-                      </Row>
-                    </Card.Footer>
-                  </Card> */}

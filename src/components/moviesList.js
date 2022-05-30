@@ -2,7 +2,8 @@ import React from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
 import MoviesCardInfo from './moviesCardInfo'
 import { useState, useEffect } from 'react';
-
+import PlayVedio from './playVedio';
+import Moment from 'react-moment';
 export default function MoviesList(props) {
 
   const [movies, setMovies] = useState([]);
@@ -29,10 +30,13 @@ export default function MoviesList(props) {
               <Card.Body>
                 <Card.Title>{movies[idx]?.title}</Card.Title>
                 <Card.Text>
-                  <p><span>Release Date:</span> {movies[idx]?.release_date}</p>
+                <p><span>Release Date:</span> <Moment format="MMMM D, YYYY">{movies[counter]?.release_date}</Moment></p>
                   <p><span >Rating:</span> {movies[idx]?.vote_average} </p>
                 </Card.Text>
-                <MoviesCardInfo MovieId={movies[idx]?.id} />
+                <div className="flex-container">
+                  <MoviesCardInfo MovieId={movies[idx]?.id} />
+                  <PlayVedio MovieId={movies[idx]?.id} type="movie" />
+                </div>
               </Card.Body>
             </Card>
           </Col>

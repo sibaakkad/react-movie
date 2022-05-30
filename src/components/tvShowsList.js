@@ -2,6 +2,8 @@ import React from 'react'
 import { Card, Row, Col } from 'react-bootstrap'
 import { useState, useEffect } from 'react';
 import TvShowsCardInfo from './tvShowsCardInfo';
+import PlayVedio from './playVedio';
+import Moment from 'react-moment';
 
 export default function TVShowsList(props) {
   const [tvShows, setTvShows] = useState([]);
@@ -25,10 +27,13 @@ export default function TVShowsList(props) {
             <Card.Body>
               <Card.Title>{tvShows[counter]?.name}</Card.Title>
               <Card.Text>
-                <p><span>Release Date:</span> {tvShows[counter]?.release_date}</p>
+              <p><span>Release Date:</span>  <Moment format="MMMM D, YYYY">{tvShows[counter]?.first_air_date}</Moment></p>
                 <p><span >Rating:</span> {tvShows[counter]?.vote_average} </p>
               </Card.Text>
-              <TvShowsCardInfo TVId={tvShows[counter]?.id} />
+              <div className="flex-container">
+                <TvShowsCardInfo TVId={tvShows[counter]?.id} />
+                <PlayVedio TVId={tvShows[counter]?.id} />
+              </div>
             </Card.Body>
           </Card>
           <div style={{ display: 'none' }}>{counter++}</div>
