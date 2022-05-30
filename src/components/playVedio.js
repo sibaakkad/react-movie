@@ -1,6 +1,5 @@
-
 import React from 'react'
-import { Modal, Button, Text, Row, Col } from "@nextui-org/react";
+import { Modal, Button} from "@nextui-org/react";
 import { useState } from 'react';
 
 
